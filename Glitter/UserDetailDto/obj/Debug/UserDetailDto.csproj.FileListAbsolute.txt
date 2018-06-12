@@ -1,0 +1,6 @@
+D:\FinalExitTest\Glitter\UserDetailDto\bin\Debug\UserDetailDto.dll
+D:\FinalExitTest\Glitter\UserDetailDto\bin\Debug\UserDetailDto.pdb
+D:\FinalExitTest\Glitter\UserDetailDto\obj\Debug\UserDetailDto.csprojResolveAssemblyReference.cache
+D:\FinalExitTest\Glitter\UserDetailDto\obj\Debug\UserDetailDto.csproj.CoreCompileInputs.cache
+D:\FinalExitTest\Glitter\UserDetailDto\obj\Debug\UserDetailDto.dll
+D:\FinalExitTest\Glitter\UserDetailDto\obj\Debug\UserDetailDto.pdb

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15e05eafa17f4bb0b6a2c723380877c1" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="GlitterDBModel.HashTag" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlitterDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlitterDBModel.Tweet" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlitterDBModel.UserDetail" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlitterDBModel.UserFollower" Width="1.5" PointX="3.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GlitterDBModel.UserReaction" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="GlitterDBModel.FK_HashTag_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="GlitterDBModel.FK_Tweet_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="GlitterDBModel.FK_UserReaction_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="GlitterDBModel.FK_UserFollowers_UserDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="GlitterDBModel.FK_UserReaction_UserDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="GlitterDBModel.FK_UserFollowers_UserDetail11" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

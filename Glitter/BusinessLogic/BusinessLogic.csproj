@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4A598DA-AC75-4D85-BA82-0B567BFBE8C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusinessLogic</RootNamespace>
+    <AssemblyName>BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BsHashTag.cs" />
+    <Compile Include="BsTweet.cs" />
+    <Compile Include="BsUserDetail.cs" />
+    <Compile Include="BsUserFollower.cs" />
+    <Compile Include="BsUserReaction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{fa1c07a6-ffb2-4a4d-99da-40b0a5b2b797}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashTagDto\HashTagDto.csproj">
+      <Project>{0a1aad10-b4ed-4d85-9c47-aaaa2b0807bb}</Project>
+      <Name>HashTagDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoginFollowerBind\LoginFollowerBindDto.csproj">
+      <Project>{8108d13e-0200-4c05-a166-2cb1e6c674bc}</Project>
+      <Name>LoginFollowerBindDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TweetDto\TweetDto.csproj">
+      <Project>{e9fb957c-b33e-4379-b769-d8cc42a73573}</Project>
+      <Name>TweetDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDetailDto\UserDetailDto.csproj">
+      <Project>{36f0e708-06d3-4674-ba3c-cee277b750b8}</Project>
+      <Name>UserDetailDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserFollowerDto\UserFollowerDto.csproj">
+      <Project>{3e63e25f-037a-4939-a449-b6b9b62feec2}</Project>
+      <Name>UserFollowerDto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserReactionDto\UserReactionDto.csproj">
+      <Project>{05d379f6-9fe9-40c3-aa09-e5dafefd3b38}</Project>
+      <Name>UserReactionDto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

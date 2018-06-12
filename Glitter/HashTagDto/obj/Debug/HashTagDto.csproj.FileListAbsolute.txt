@@ -1,0 +1,6 @@
+D:\FinalExitTest\Glitter\HashTagDto\bin\Debug\HashTagDto.dll
+D:\FinalExitTest\Glitter\HashTagDto\bin\Debug\HashTagDto.pdb
+D:\FinalExitTest\Glitter\HashTagDto\obj\Debug\HashTagDto.csprojResolveAssemblyReference.cache
+D:\FinalExitTest\Glitter\HashTagDto\obj\Debug\HashTagDto.csproj.CoreCompileInputs.cache
+D:\FinalExitTest\Glitter\HashTagDto\obj\Debug\HashTagDto.dll
+D:\FinalExitTest\Glitter\HashTagDto\obj\Debug\HashTagDto.pdb

@@ -1,0 +1,6 @@
+D:\FinalExitTest\Glitter\LoginFollowerBind\bin\Debug\LoginFollowerBind.dll
+D:\FinalExitTest\Glitter\LoginFollowerBind\bin\Debug\LoginFollowerBind.pdb
+D:\FinalExitTest\Glitter\LoginFollowerBind\obj\Debug\LoginFollowerBindDto.csprojResolveAssemblyReference.cache
+D:\FinalExitTest\Glitter\LoginFollowerBind\obj\Debug\LoginFollowerBindDto.csproj.CoreCompileInputs.cache
+D:\FinalExitTest\Glitter\LoginFollowerBind\obj\Debug\LoginFollowerBind.dll
+D:\FinalExitTest\Glitter\LoginFollowerBind\obj\Debug\LoginFollowerBind.pdb

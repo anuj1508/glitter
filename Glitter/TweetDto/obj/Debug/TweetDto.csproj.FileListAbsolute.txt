@@ -1,0 +1,6 @@
+D:\FinalExitTest\Glitter\TweetDto\bin\Debug\TweetDto.dll
+D:\FinalExitTest\Glitter\TweetDto\bin\Debug\TweetDto.pdb
+D:\FinalExitTest\Glitter\TweetDto\obj\Debug\TweetDto.csprojResolveAssemblyReference.cache
+D:\FinalExitTest\Glitter\TweetDto\obj\Debug\TweetDto.csproj.CoreCompileInputs.cache
+D:\FinalExitTest\Glitter\TweetDto\obj\Debug\TweetDto.dll
+D:\FinalExitTest\Glitter\TweetDto\obj\Debug\TweetDto.pdb

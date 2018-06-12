@@ -1,0 +1,20 @@
+<div class="col-md-6 col-md-offset-3">
+        <h2>Login</h2>
+        <form *ngIf="!loginIndicator" name="form" ng-submit="vm.login()" role="form">
+            <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                <label for="username">Email</label>
+                <input  type="text" required [(ngModel)]="Email" name="MyEmail" class="form-control input1"  #MyEmailId="ngModel">
+                <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                <label for="password">Password</label>
+                <input type="password" required    [(ngModel)]="Password" name="Password" class="form-control input1">
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+            </div>
+            <div class="form-actions">
+                <!-- <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button> -->
+                <button [disabled]=false (click)="send()"class="btn btn-primary">Login</button>
+                <a href="/register" class="btn btn-link">Register</a>
+            </div>
+        </form>
+</div> 

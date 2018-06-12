@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GlitterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HashTag">
+          <Key>
+            <PropertyRef Name="HashTagId" />
+          </Key>
+          <Property Name="HashTagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HashTagName" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="TweetId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tweet">
+          <Key>
+            <PropertyRef Name="TweetId" />
+          </Key>
+          <Property Name="TweetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDetailId" Type="int" Nullable="false" />
+          <Property Name="TweetContent" Type="varchar" MaxLength="240" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserDetailId" />
+          </Key>
+          <Property Name="UserDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobileNumber" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserFollowers">
+          <Key>
+            <PropertyRef Name="UserFollowersId" />
+          </Key>
+          <Property Name="UserFollowersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserDetailId" Type="int" Nullable="false" />
+          <Property Name="FollowerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserReaction">
+          <Key>
+            <PropertyRef Name="UserReactionId" />
+          </Key>
+          <Property Name="UserReactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TweetId" Type="int" Nullable="false" />
+          <Property Name="UserDetailId" Type="int" Nullable="false" />
+          <Property Name="IsLiked" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_HashTag_Tweet">
+          <End Role="Tweet" Type="Self.Tweet" Multiplicity="1" />
+          <End Role="HashTag" Type="Self.HashTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="TweetId" />
+            </Principal>
+            <Dependent Role="HashTag">
+              <PropertyRef Name="TweetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tweet_Tweet">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="Tweet" Type="Self.Tweet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="Tweet">
+              <PropertyRef Name="UserDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFollowers_UserDetail">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="UserFollowers" Type="Self.UserFollowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="UserFollowers">
+              <PropertyRef Name="UserDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFollowers_UserDetail1">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="UserFollowers" Type="Self.UserFollowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="UserFollowers">
+              <PropertyRef Name="FollowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReaction_Tweet">
+          <End Role="Tweet" Type="Self.Tweet" Multiplicity="1" />
+          <End Role="UserReaction" Type="Self.UserReaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="TweetId" />
+            </Principal>
+            <Dependent Role="UserReaction">
+              <PropertyRef Name="TweetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReaction_UserDetail">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="UserReaction" Type="Self.UserReaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="UserReaction">
+              <PropertyRef Name="UserDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GlitterDBModelStoreContainer">
+          <EntitySet Name="HashTag" EntityType="Self.HashTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tweet" EntityType="Self.Tweet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFollowers" EntityType="Self.UserFollowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserReaction" EntityType="Self.UserReaction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HashTag_Tweet" Association="Self.FK_HashTag_Tweet">
+            <End Role="Tweet" EntitySet="Tweet" />
+            <End Role="HashTag" EntitySet="HashTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tweet_Tweet" Association="Self.FK_Tweet_Tweet">
+            <End Role="UserDetail" EntitySet="UserDetail" />
+            <End Role="Tweet" EntitySet="Tweet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFollowers_UserDetail" Association="Self.FK_UserFollowers_UserDetail">
+            <End Role="UserDetail" EntitySet="UserDetail" />
+            <End Role="UserFollowers" EntitySet="UserFollowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFollowers_UserDetail1" Association="Self.FK_UserFollowers_UserDetail1">
+            <End Role="UserDetail" EntitySet="UserDetail" />
+            <End Role="UserFollowers" EntitySet="UserFollowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReaction_Tweet" Association="Self.FK_UserReaction_Tweet">
+            <End Role="Tweet" EntitySet="Tweet" />
+            <End Role="UserReaction" EntitySet="UserReaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReaction_UserDetail" Association="Self.FK_UserReaction_UserDetail">
+            <End Role="UserDetail" EntitySet="UserDetail" />
+            <End Role="UserReaction" EntitySet="UserReaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GlitterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HashTag">
+          <Key>
+            <PropertyRef Name="HashTagId" />
+          </Key>
+          <Property Name="HashTagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HashTagName" Type="String" MaxLength="240" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TweetId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tweet" Relationship="Self.FK_HashTag_Tweet" FromRole="HashTag" ToRole="Tweet" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tweet">
+          <Key>
+            <PropertyRef Name="TweetId" />
+          </Key>
+          <Property Name="TweetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" />
+          <Property Name="TweetContent" Type="String" MaxLength="240" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="HashTags" Relationship="Self.FK_HashTag_Tweet" FromRole="Tweet" ToRole="HashTag" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK_Tweet_Tweet" FromRole="Tweet" ToRole="UserDetail" />
+          <NavigationProperty Name="UserReactions" Relationship="Self.FK_UserReaction_Tweet" FromRole="Tweet" ToRole="UserReaction" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserDetailId" />
+          </Key>
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MobileNumber" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tweets" Relationship="Self.FK_Tweet_Tweet" FromRole="UserDetail" ToRole="Tweet" />
+          <NavigationProperty Name="UserFollowers" Relationship="Self.FK_UserFollowers_UserDetail" FromRole="UserDetail" ToRole="UserFollowers" />
+          <NavigationProperty Name="UserReactions" Relationship="Self.FK_UserReaction_UserDetail" FromRole="UserDetail" ToRole="UserReaction" />
+          <NavigationProperty Name="UserFollowers1" Relationship="GlitterDBModel.FK_UserFollowers_UserDetail11" FromRole="UserDetail" ToRole="UserFollower" />
+        </EntityType>
+        <EntityType Name="UserFollower">
+          <Key>
+            <PropertyRef Name="UserFollowersId" />
+          </Key>
+          <Property Name="UserFollowersId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" />
+          <Property Name="FollowerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK_UserFollowers_UserDetail" FromRole="UserFollowers" ToRole="UserDetail" />
+          <NavigationProperty Name="UserDetail11" Relationship="GlitterDBModel.FK_UserFollowers_UserDetail11" FromRole="UserFollower" ToRole="UserDetail" />
+        </EntityType>
+        <EntityType Name="UserReaction">
+          <Key>
+            <PropertyRef Name="UserReactionId" />
+          </Key>
+          <Property Name="UserReactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TweetId" Type="Int32" Nullable="false" />
+          <Property Name="UserDetailId" Type="Int32" Nullable="false" />
+          <Property Name="IsLiked" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tweet" Relationship="Self.FK_UserReaction_Tweet" FromRole="UserReaction" ToRole="Tweet" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK_UserReaction_UserDetail" FromRole="UserReaction" ToRole="UserDetail" />
+        </EntityType>
+        <Association Name="FK_HashTag_Tweet">
+          <End Role="Tweet" Type="Self.Tweet" Multiplicity="1" />
+          <End Role="HashTag" Type="Self.HashTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="TweetId" />
+            </Principal>
+            <Dependent Role="HashTag">
+              <PropertyRef Name="TweetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tweet_Tweet">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="Tweet" Type="Self.Tweet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="Tweet">
+              <PropertyRef Name="UserDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReaction_Tweet">
+          <End Role="Tweet" Type="Self.Tweet" Multiplicity="1" />
+          <End Role="UserReaction" Type="Self.UserReaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="TweetId" />
+            </Principal>
+            <Dependent Role="UserReaction">
+              <PropertyRef Name="TweetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFollowers_UserDetail">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="UserFollowers" Type="Self.UserFollower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="UserFollowers">
+              <PropertyRef Name="UserDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserReaction_UserDetail">
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="UserReaction" Type="Self.UserReaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="UserReaction">
+              <PropertyRef Name="UserDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GlitterDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HashTags" EntityType="Self.HashTag" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tweets" EntityType="Self.Tweet" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <EntitySet Name="UserFollowers" EntityType="Self.UserFollower" />
+          <EntitySet Name="UserReactions" EntityType="Self.UserReaction" />
+          <AssociationSet Name="FK_HashTag_Tweet" Association="Self.FK_HashTag_Tweet">
+            <End Role="Tweet" EntitySet="Tweets" />
+            <End Role="HashTag" EntitySet="HashTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tweet_Tweet" Association="Self.FK_Tweet_Tweet">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="Tweet" EntitySet="Tweets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReaction_Tweet" Association="Self.FK_UserReaction_Tweet">
+            <End Role="Tweet" EntitySet="Tweets" />
+            <End Role="UserReaction" EntitySet="UserReactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFollowers_UserDetail" Association="Self.FK_UserFollowers_UserDetail">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="UserFollowers" EntitySet="UserFollowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserReaction_UserDetail" Association="Self.FK_UserReaction_UserDetail">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="UserReaction" EntitySet="UserReactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFollowers_UserDetail11" Association="GlitterDBModel.FK_UserFollowers_UserDetail11">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="UserFollower" EntitySet="UserFollowers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_UserFollowers_UserDetail11">
+          <End Type="GlitterDBModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+          <End Type="GlitterDBModel.UserFollower" Role="UserFollower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserDetailId" />
+            </Principal>
+            <Dependent Role="UserFollower">
+              <PropertyRef Name="FollowerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GlitterDBModelStoreContainer" CdmEntityContainer="GlitterDBEntities1">
+          <EntitySetMapping Name="HashTags">
+            <EntityTypeMapping TypeName="GlitterDBModel.HashTag">
+              <MappingFragment StoreEntitySet="HashTag">
+                <ScalarProperty Name="HashTagId" ColumnName="HashTagId" />
+                <ScalarProperty Name="HashTagName" ColumnName="HashTagName" />
+                <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GlitterDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tweets">
+            <EntityTypeMapping TypeName="GlitterDBModel.Tweet">
+              <MappingFragment StoreEntitySet="Tweet">
+                <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="TweetContent" ColumnName="TweetContent" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="GlitterDBModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetail">
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFollowers">
+            <EntityTypeMapping TypeName="GlitterDBModel.UserFollower">
+              <MappingFragment StoreEntitySet="UserFollowers">
+                <ScalarProperty Name="UserFollowersId" ColumnName="UserFollowersId" />
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="FollowerId" ColumnName="FollowerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserReactions">
+            <EntityTypeMapping TypeName="GlitterDBModel.UserReaction">
+              <MappingFragment StoreEntitySet="UserReaction">
+                <ScalarProperty Name="UserReactionId" ColumnName="UserReactionId" />
+                <ScalarProperty Name="TweetId" ColumnName="TweetId" />
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="IsLiked" ColumnName="IsLiked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

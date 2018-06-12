@@ -1,0 +1,5 @@
+D:\FinalExitTest\Glitter\UserReactionDto\bin\Debug\UserReactionDto.dll
+D:\FinalExitTest\Glitter\UserReactionDto\bin\Debug\UserReactionDto.pdb
+D:\FinalExitTest\Glitter\UserReactionDto\obj\Debug\UserReactionDto.csproj.CoreCompileInputs.cache
+D:\FinalExitTest\Glitter\UserReactionDto\obj\Debug\UserReactionDto.dll
+D:\FinalExitTest\Glitter\UserReactionDto\obj\Debug\UserReactionDto.pdb

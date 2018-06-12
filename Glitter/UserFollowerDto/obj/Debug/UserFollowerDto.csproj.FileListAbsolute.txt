@@ -1,0 +1,6 @@
+D:\FinalExitTest\Glitter\UserFollowerDto\bin\Debug\UserFollowerDto.dll
+D:\FinalExitTest\Glitter\UserFollowerDto\bin\Debug\UserFollowerDto.pdb
+D:\FinalExitTest\Glitter\UserFollowerDto\obj\Debug\UserFollowerDto.csprojResolveAssemblyReference.cache
+D:\FinalExitTest\Glitter\UserFollowerDto\obj\Debug\UserFollowerDto.csproj.CoreCompileInputs.cache
+D:\FinalExitTest\Glitter\UserFollowerDto\obj\Debug\UserFollowerDto.dll
+D:\FinalExitTest\Glitter\UserFollowerDto\obj\Debug\UserFollowerDto.pdb
